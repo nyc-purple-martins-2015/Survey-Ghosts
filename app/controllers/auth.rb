@@ -3,10 +3,10 @@ get '/login' do
 end
 
 post '/login' do
-  username = params[:username]
-  @user = User.where(username: username).first
-  if @user && @user.authenticate(params[:username][:password])
-    session[:user_id] = @user.id
+  username = params[:user][:username]
+  user = User.find_by(username: username)
+  if user && user.authenticate(params[:user][:password])
+    session[:user_id] = user.id
     redirect to('/')
   else
     "Incorrect username or password"

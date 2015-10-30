@@ -2,7 +2,7 @@ require "faker"
 
 3.times do User.create!(
   username: Faker::Internet.user_name,
-  password_digest: "password"
+  password: "password"
   )
 end
 # Survey 1
