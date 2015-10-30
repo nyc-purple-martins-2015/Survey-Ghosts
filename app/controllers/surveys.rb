@@ -10,7 +10,7 @@ end
 
 post '/surveys' do
   user = current_user
-  survey = Survey.new(params[:survey])
+  survey = Survey.new(author: user, title: params[:title], description: params[:description])
   if survey.save
     redirect "/questions/new"
   else

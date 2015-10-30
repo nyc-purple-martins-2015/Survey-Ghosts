@@ -5,3 +5,4 @@ get '/questions/new' do
   @choices = []
   erb :'questions/new'
 end
+
