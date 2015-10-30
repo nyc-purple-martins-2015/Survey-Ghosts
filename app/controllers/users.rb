@@ -16,5 +16,12 @@ end
 
 get '/users/:id' do |id|
   @user = User.find(id)
-  erb :'/users/show'
+  @author_surveys = @user.surveys
+  options_made = @user.chosen_options
+  @taken_surveys = []
+  options_made.each do |s|
+    @taken_surveys << Survey.find(s.survey_id)
+  end
+  @taken_surveys.uniq
+  erb :'users/show'
 end
