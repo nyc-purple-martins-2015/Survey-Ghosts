@@ -3,15 +3,17 @@
   <h3><%= @user.username %></h3>
   <div id='survey-created-list'>
     <h3>Surveys Created</h3>
-      <% @surveys_author do |survey| %>
-      <div class="authored-surveys"><a href="/users/<%= user.id %>"><%= survey.title %></a><p> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
+      <% @author_surveys.each do |survey| %>
+      <div class="authored-surveys"><a href="/users/<%= @user.id %>"><%= survey.title %></a><p> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
     <% end %>
+    <div id="survey-stats-append-area"></div>
   </div>
 
   <div id='survey-taken-list'>
     <h3>Surveys Taken</h3>
-      <% @surveys_taken do |survey| %>
-      <div class="taken-surveys"><p><%= survey.title %></p><p> | by <%= @author %> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
+      <% @taken_surveys.each do |survey| %>
+      <% author = User.find(survey.author_id) %>
+      <div class="taken-surveys"><p><%= survey.title %></p><p> | by <%= author.username %> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
     <% end %>
   </div>
 </div>
