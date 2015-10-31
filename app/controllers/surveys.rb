@@ -1,6 +1,5 @@
 get "/surveys" do
   @surveys = Survey.all
-  # @author =
   erb :"/surveys/index"
 end
 
@@ -20,6 +19,8 @@ post '/surveys' do
 end
 
 get "/surveys/:id" do
+  @survey = Survey.find(params[:id])
+  erb :"surveys/show"
 end
 
 get "surveys/:id/complete" do
