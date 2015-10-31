@@ -8,7 +8,7 @@
   </ul>
   <% end %>
 
-<form action="/questions" method="post">
+<form action="/surveys/<%= @survey.id %>/questions" method="post">
   <label for="query_input">Question: </label>
   <input type="text" id="query_input" name="query" value="<%= params[:query] %>"></input>
   <% params[:options] = {} if !params[:options] %>
@@ -23,7 +23,7 @@
 <a href="/">Done</a>
 <% @survey.questions.order(:created_at).includes(:options).each do |question| %>
   <div class="question">
-  <p><%= question.prompt %></p>
+  <p><%= question.query %></p>
   <% options = question.options.includes(:chosen_options) %>
   <div class="option-list">
   <% options.each do |option| %>
