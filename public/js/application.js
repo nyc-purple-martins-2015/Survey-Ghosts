@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  $('#save-all').hide();
 
   $("#new-survey-form").on("submit", function(event){
     event.preventDefault()
