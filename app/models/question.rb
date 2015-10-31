@@ -3,5 +3,5 @@ class Question < ActiveRecord::Base
   has_many :options
   has_many :chosen_options, :through => :options
 
-  validates :questions, presence: true
+  validates :query, presence: true
 end

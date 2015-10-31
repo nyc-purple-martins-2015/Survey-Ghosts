@@ -10,16 +10,3 @@
 
   <input type="submit" value="Add Question"></input>
 </form>
-
-<% @survey.questions.order(:created_at).includes(:options).each do |question| %>
-  <div class="question">
-  <p><%= question.query %></p>
-  <% options = question.options.includes(:chosen_options) %>
-  <div class="option-list">
-  <% options.each do |option| %>
-    <div>
-      <%= option.response %>
-    </div>
-  <% end %>
-  </div>
-<% end %>
