@@ -37,3 +37,11 @@ post '/surveys/:id/questions' do
     redirect :"/surveys/#{survey.id}/questions/new"
   end
 end
+
+get '/questions/:id' do
+  erb :'/questions/show'
+end
+
+post '/questions' do
+
+end

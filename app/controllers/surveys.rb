@@ -18,3 +18,10 @@ post '/surveys' do
     erb :'surveys/new'
   end
 end
+
+get "/surveys/:id" do
+end
+
+get "surveys/:id/complete" do
+  erb :"surveys/complete"
+end
