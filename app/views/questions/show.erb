@@ -1,0 +1,19 @@
+<h2> Question #<%= @questions.index(@question) + 1%>
+
+  <h3><%=@question.query%></h3>
+
+  <form method="post" action="/chosen_options">
+
+    <% @question.options.each do |option| %>
+      <p><input type="radio" name="option_id" value="<%=option.id%>" checked><%=option.response%></p>
+
+    <%end%>
+    <input type='hidden' name="survey_id" value="<%=@survey.id%>">
+    <input type="hidden" name="question_id" value="<%=@question.id%>">
+    <input type="submit" value="Submit Answer">
+  </form>
+
+
+
+
+

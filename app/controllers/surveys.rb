@@ -1,6 +1,5 @@
 get "/surveys" do
   @surveys = Survey.all
-  # @author =
   erb :"/surveys/index"
 end
 
@@ -17,4 +16,14 @@ post '/surveys' do
     @errors = survey.errors.full_messages
     erb :'surveys/new'
   end
+end
+
+get "/surveys/:id" do
+  @survey = Survey.find(params[:id])
+  erb :"surveys/show"
+end
+
+get "/surveys/:id/complete" do
+  @survey = Survey.find(params[:id])
+  erb :"surveys/complete"
 end

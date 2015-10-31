@@ -1,13 +1,5 @@
 <h2>Create a New Survey</h2>
 
-<% if !@errors.empty? %>
-  <ul class="errors">
-    <% @errors.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-  <% end %>
-
 <div>
   <form action="/surveys" method="post">
     <div>
