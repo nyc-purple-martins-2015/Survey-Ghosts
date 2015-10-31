@@ -45,7 +45,7 @@ get '/surveys/:survey_id/questions/:id' do
   @questions = Question.where(survey_id: params[:survey_id])
   @question = @survey.questions.find(params[:id])
 
-  erb :'/questions/show'
+  erb :'/questions/show', layout: false
 end
 
 post '/chosen_options' do

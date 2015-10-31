@@ -1,7 +1,23 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $("a.start_survey_link").on('click', function(event) {
+    event.preventDefault();
+
+    var url = $(this).attr("href");
+    var link = $(this)
+
+    var showFirstQuestion = $.ajax({
+      method: "get",
+      url: url
+    }).done(function(firstPage) {
+      link.replaceWith(firstPage);
+    })
+
+  });
+
 });
+
+ // $("#new-horse").on('click', function(event) {
+ //    event.preventDefault();
+ //    loadNewHorseForm();
+ //  });
