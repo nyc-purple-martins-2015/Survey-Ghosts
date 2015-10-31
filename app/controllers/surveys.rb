@@ -5,7 +5,13 @@ get "/surveys" do
 end
 
 get '/surveys/new' do
-  erb :'surveys/new'
+  if session[:user_id]
+    @survey = Survey.new
+    erb :"surveys/new"
+  else
+    @errors = ["Please log in to create survey."]
+    erb :"surveys/index" ## does this work?
+  end
 end
 
 post '/surveys' do
