@@ -34,9 +34,12 @@ get '/users/:id/surveys/:id' do
   question_collection.each do |question|
     questions << question
   end
-  # questions.first
-# "#{user.username} #{survey.title} #{questions.first}"
-  erb :"surveys/_surveys_created", locals: {questions: questions, user: user, survey: survey}, layout: false
+
+  if request.xhr?
+    erb :"surveys/_surveys_created", locals: {questions: questions, user: user, survey: survey}, layout: false
+  else
+    erb :"surveys/_surveys_created", locals: {questions: questions, user: user, survey: survey}
+  end
 end
 
 delete '/users/:id/surveys/:id' do
