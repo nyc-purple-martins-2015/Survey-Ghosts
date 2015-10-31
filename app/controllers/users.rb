@@ -36,5 +36,12 @@ get '/users/:id/surveys/:id' do
   end
   # questions.first
 # "#{user.username} #{survey.title} #{questions.first}"
-  erb :"surveys/_surveys_created", locals: {questions: questions}, layout: false
+  erb :"surveys/_surveys_created", locals: {questions: questions, user: user, survey: survey}, layout: false
+end
+
+delete '/users/:id/surveys/:id' do
+  user = current_user
+  survey = Survey.find(params[:id])
+  survey.destroy
+  redirect "/users/#{user.id}"
 end
