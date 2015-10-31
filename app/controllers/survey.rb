@@ -3,3 +3,4 @@ get "/surveys" do
   # @author =
   erb :"/surveys/index"
 end
+
