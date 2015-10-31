@@ -23,6 +23,7 @@ get "/surveys/:id" do
   erb :"surveys/show"
 end
 
-get "surveys/:id/complete" do
+get "/surveys/:id/complete" do
+  @survey = Survey.find(params[:id])
   erb :"surveys/complete"
 end
