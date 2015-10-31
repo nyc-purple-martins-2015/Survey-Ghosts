@@ -3,6 +3,7 @@
   <h3><%= @user.username %></h3>
   <div id='survey-created-list'>
     <h3>Surveys Created</h3>
+    <p><a id="create-new-survey" href="/surveys/new">Create a new survey here</a></p>
       <% @author_surveys.each do |survey| %>
       <div class="authored-surveys"><a href="/users/<%= @user.id %>/surveys/<%= survey.id%>"><%= survey.title %></a><p> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
     <% end %>

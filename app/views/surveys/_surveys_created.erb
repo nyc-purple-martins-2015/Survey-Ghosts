@@ -8,3 +8,8 @@
     <p><%= question.chosen_options.count %></p>
   <% end %>
 <% end %>
+
+<form method="post" action="/users/<%= user.id %>/surveys/<%= survey.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Survey" class="button">
+</form>
