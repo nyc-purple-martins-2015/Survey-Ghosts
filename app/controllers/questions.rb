@@ -6,16 +6,6 @@ get '/surveys/:id/questions/new' do
   erb :'questions/new'
 end
 
-get '/surveys/:survey_id/questions/:id' do
-
-  @survey = Survey.find(params[:survey_id])
-  @questions = Question.where(survey_id: params[:survey_id])
-  @question = @survey.questions.find(params[:id])
-
-  # @current_survey_questions = @surveys.questions.map { |question| question}
-  # pull in the question options that are assoted with the survey id shown in the url only.
-  erb :'/questions/show'
-end
 
 post '/surveys/:id/questions' do
   survey = Survey.find_by(id: params[:id])
@@ -49,6 +39,14 @@ post '/surveys/:id/questions' do
   end
 end
 
+get '/surveys/:survey_id/questions/:id' do
+
+  @survey = Survey.find(params[:survey_id])
+  @questions = Question.where(survey_id: params[:survey_id])
+  @question = @survey.questions.find(params[:id])
+
+  erb :'/questions/show'
+end
 
 post '/chosen_options' do
     questions = Question.where(survey_id: params[:survey_id])
