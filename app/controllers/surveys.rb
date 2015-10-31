@@ -18,3 +18,9 @@ post '/surveys' do
     erb :'surveys/new'
   end
 end
+
+delete '/surveys/:id' do
+  survey = Survey.find(params[:id])
+  survey.destroy
+  redirect "/users/#{survey.author_id}"
+end
