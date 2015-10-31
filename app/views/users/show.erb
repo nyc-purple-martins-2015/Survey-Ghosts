@@ -4,7 +4,7 @@
   <div id='survey-created-list'>
     <h3>Surveys Created</h3>
       <% @author_surveys.each do |survey| %>
-      <div class="authored-surveys"><a href="/users/<%= @user.id %>"><%= survey.title %></a><p> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
+      <div class="authored-surveys"><a href="/users/<%= @user.id %>/surveys/<%= survey.id%>"><%= survey.title %></a><p> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
     <% end %>
     <div id="survey-stats-append-area"></div>
   </div>
