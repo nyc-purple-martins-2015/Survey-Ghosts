@@ -2,8 +2,12 @@ get '/surveys/:id/questions/new' do
   @survey = Survey.find_by(id: params[:id])
   @errors = []
   @question = Question.new
-  @choices = []
-  erb :'questions/new'
+  @options = []
+  if request.xhr?
+    erb :"questions/_new_question_form", layout: false
+  else
+    erb :"questions/new"
+  end
 end
 
 
@@ -33,12 +37,13 @@ post '/surveys/:id/questions' do
     options.each { |option| option.destroy }
     question.destroy
     p errors
-    redirect :"/surveys/#{survey.id}/questions/new?#{params.to_query}"
+    redirect "/surveys/#{survey.id}/questions/new?#{params.to_query}"
   else
-    redirect :"/surveys/#{survey.id}/questions/new"
+    redirect "/surveys/#{survey.id}/questions/new"
   end
 end
 
+<<<<<<< HEAD
 get '/surveys/:survey_id/questions/:id' do
 
   @survey = Survey.find(params[:survey_id])
@@ -64,3 +69,17 @@ post '/chosen_options' do
       errors += option.errors.full_messages
     end
 end
+=======
+
+# post '/surveys/:id/questions' do |survey_id|
+#   survey = Survey.find(survey_id)
+#   @question = survey.questions.new(params[:question])
+#   if @question.save
+#     # flash[:message] = "adding a choice for #{@question.name}"
+#     redirect "/questions/#{@question.id}/questions/new"
+#   else
+#     @errors = @question.errors.full_messages
+#     erb :'questions/new'
+#   end
+# end
+>>>>>>> incorporate ajax to add question in survey new

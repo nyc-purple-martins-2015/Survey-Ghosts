@@ -1,7 +1,13 @@
 <h2>Create a New Survey</h2>
 
-<div>
-  <form action="/surveys" method="post">
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p class="errors"><%= error %></p>
+  <% end %>
+<% end %>
+
+<div id="survey-form">
+  <form id="new-survey-form" action="/surveys" method="post">
     <div>
       <label for="title">Title:</label>
       <input id="title" name="survey[title]"></input>
@@ -10,6 +16,9 @@
       <label for="description">Description:</label>
       <input id="description" name="survey[description]"></input>
     </div>
-    <input type="submit" value="Create Questions"></input>
+    <input id="survey-title-submit" type="submit" value="Create Questions"></input>
   </form>
 </div>
+
+<div id="question-container"></div>
+<div id="add-question"></div>

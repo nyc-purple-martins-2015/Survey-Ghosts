@@ -1,0 +1,12 @@
+<form id="new-question-form" action="/surveys/<%= @survey.id %>/questions" method="post">
+  <label for="query_input">Question: </label>
+  <input type="text" id="query_input" name="query" value="<%= params[:query] %>"></input>
+  <% params[:options] = {} if !params[:options] %>
+  <label for="option_input">Options: </label>
+  <input type="text" id="option_input" name="options[1]" value="<%= "#{params[:options]["1"]}" %>"></input>
+  <input type="text" id="option_input" name="options[2]" value="<%= "#{params[:options]["2"]}" %>"></input>
+  <input type="text" id="option_input" name="options[3]" value="<%= "#{params[:options]["3"]}" %>"></input>
+  <input type="text" id="option_input" name="options[4]" value="<%= "#{params[:options]["4"]}" %>"></input>
+
+  <input type="submit" value="Add Question"></input>
+</form>
