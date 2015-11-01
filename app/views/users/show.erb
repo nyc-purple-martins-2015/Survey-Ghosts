@@ -1,4 +1,4 @@
-<div>
+<div class="jumbotron">
   <h2>Profile</h2>
   <h3><%= @user.username %></h3>
   <div id='survey-created-list'>
@@ -7,12 +7,13 @@
       <% @author_surveys.each do |survey| %>
       <div class="authored-surveys" id="<%= survey.id %> <%= survey.author_id %>">
         <a href="/users/<%= @user.id %>/surveys/<%= survey.id%>"><%= survey.title %></a><p> on <%= survey.created_at.strftime("%b %d, %Y")%></p>
-         <div id="stats-append-area class="<%= survey.id %>"></div>
+         <div id="stats-append-area" class="<%= survey.id %>"></div>
       </div>
     <% end %>
-
   </div>
+</div>
 
+<div class="jumbotron">
   <div id='survey-taken-list'>
     <h3>Surveys Taken</h3>
       <% @taken_surveys.each do |survey| %>

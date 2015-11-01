@@ -2,8 +2,12 @@ get '/surveys/:id/questions/new' do
   @survey = Survey.find_by(id: params[:id])
   @errors = []
   @question = Question.new
-  @choices = []
-  erb :'questions/new'
+  @options = []
+  if request.xhr?
+    erb :"questions/_new_question_form", layout: false
+  else
+    erb :"questions/new"
+  end
 end
 
 
@@ -33,19 +37,20 @@ post '/surveys/:id/questions' do
     options.each { |option| option.destroy }
     question.destroy
     p errors
-    redirect :"/surveys/#{survey.id}/questions/new?#{params.to_query}"
+    redirect "/surveys/#{survey.id}/questions/new?#{params.to_query}"
   else
-    redirect :"/surveys/#{survey.id}/questions/new"
+    redirect "/surveys/#{survey.id}/questions/new"
   end
 end
 
-get '/surveys/:survey_id/questions/:id' do
 
+get '/surveys/:survey_id/questions/:id' do
   @survey = Survey.find(params[:survey_id])
   @questions = Question.where(survey_id: params[:survey_id])
   @question = @survey.questions.find(params[:id])
 
   erb :'/questions/show', layout: false
+
 end
 
 post '/chosen_options' do

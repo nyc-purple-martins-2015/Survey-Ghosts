@@ -1,15 +1,17 @@
-<div class="<%= survey.id%> id="partial-survey">
-  <% questions.each do |question| %>
-    <p>Question: <%= question.query %><p>
-    <%  possible_responses = question.options %>
-    <% possible_responses.each do |possible_response| %>
-      <% choice = possible_response.response%>
-    <p> <%=  choice %> </p>
-      <p><%= question.chosen_options.count %></p>
+<div class="jumbotron">
+  <div class="<%= survey.id%>" id="partial-survey">
+    <% questions.each do |question| %>
+      <p>Question: <%= question.query %><p>
+      <% possible_responses = question.options %>
+      <% possible_responses.each do |possible_response| %>
+        <% choice = possible_response.response %>
+      <p> <%=  choice %> </p>
+        <p><%= question.chosen_options.count %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <form method="post" action="/users/<%= user.id %>/surveys/<%= survey.id %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Survey" class="button">
+  </form>
 </div>
-<form method="post" action="/users/<%= user.id %>/surveys/<%= survey.id %>">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Survey" class="button">
-</form>
