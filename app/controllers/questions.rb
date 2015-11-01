@@ -43,13 +43,11 @@ post '/surveys/:id/questions' do
   end
 end
 
-<<<<<<< HEAD
-get '/surveys/:survey_id/questions/:id' do
 
+get '/surveys/:survey_id/questions/:id' do
   @survey = Survey.find(params[:survey_id])
   @questions = Question.where(survey_id: params[:survey_id])
   @question = @survey.questions.find(params[:id])
-
   erb :'/questions/show'
 end
 
@@ -69,17 +67,3 @@ post '/chosen_options' do
       errors += option.errors.full_messages
     end
 end
-=======
-
-# post '/surveys/:id/questions' do |survey_id|
-#   survey = Survey.find(survey_id)
-#   @question = survey.questions.new(params[:question])
-#   if @question.save
-#     # flash[:message] = "adding a choice for #{@question.name}"
-#     redirect "/questions/#{@question.id}/questions/new"
-#   else
-#     @errors = @question.errors.full_messages
-#     erb :'questions/new'
-#   end
-# end
->>>>>>> incorporate ajax to add question in survey new
