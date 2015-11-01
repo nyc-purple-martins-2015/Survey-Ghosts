@@ -1,9 +1,9 @@
-<div>
+<div class="jumbotron">
   <h2>Surveys</h2>
     <div id='survey-list'>
       <% @surveys.each do |survey| %>
       <% author = User.find(survey.author_id) %>
-        <div class="survey-listing"><a href="/surveys/<%= survey.id %>"><%= survey.title %></a><p> | by <%= author.username %> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
+        <div class="survey-listing"><a href="/surveys/<%= survey.id %>"><%= survey.title %></a><p> by <%= author.username %> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
       <% end %>
     </div>
 

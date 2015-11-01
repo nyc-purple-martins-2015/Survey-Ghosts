@@ -1,26 +1,28 @@
-<h2>Add questions to "<%= @survey.title %>"</h2>
+<div class="jumbotron">
+  <h2>Add questions to "<%= @survey.title %>"</h2>
 
-<% if !@errors.empty? %>
-<ul class="errors">
-  <% @errors.each do |message| %>
-    <li><%= message %></li>
+  <% if !@errors.empty? %>
+  <ul class="errors">
+    <% @errors.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
   <% end %>
-</ul>
-<% end %>
 
-<% @survey.questions.order(:created_at).includes(:options).each do |question| %>
-<div class="question">
-<p><%= question.query %></p>
-<% options = question.options.includes(:chosen_options) %>
-<div class="option-list">
-<% options.each do |option| %>
-  <div>
-    <%= option.response %>
+  <% @survey.questions.order(:created_at).includes(:options).each do |question| %>
+  <div class="question">
+  <p><%= question.query %></p>
+  <% options = question.options.includes(:chosen_options) %>
+  <div class="option-list">
+  <% options.each do |option| %>
+    <div>
+      <%= option.response %>
+    </div>
+  <% end %>
   </div>
-<% end %>
+  <% end %>
+
+  <%= erb :"questions/_new_question_form", layout: false %>
+
+  <a href="/">Done</a>
 </div>
-<% end %>
-
-<%= erb :"questions/_new_question_form", layout: false %>
-
-<a href="/">Done</a>
