@@ -1,4 +1,10 @@
 <div>
+
+  <%if @taken%>
+  <p>You already took this quiz silly!</p>
+    <%#@errors.each%>
+  <%end%>
+
   <h2>Surveys</h2>
     <div id='survey-list'>
       <% @surveys.each do |survey| %>

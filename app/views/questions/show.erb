@@ -1,3 +1,5 @@
+<div class="question_page">
+
 <h2> Question #<%= @questions.index(@question) + 1%>
 
   <h3><%=@question.query%></h3>
@@ -12,6 +14,8 @@
     <input type="hidden" name="question_id" value="<%=@question.id%>">
     <input type="submit" value="Submit Answer">
   </form>
+
+</div>
 
 
 
