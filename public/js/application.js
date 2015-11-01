@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-<<<<<<< HEAD
   $(".start_survey_link").on('click', function(event) {
     event.preventDefault();
 
@@ -37,7 +36,7 @@ $(document).ready(function() {
  //    event.preventDefault();
  //    loadNewHorseForm();
  //  });
-=======
+
   $("#new-survey-form").on("submit", function(event){
     event.preventDefault()
     var method = $(this).attr("method");
@@ -108,5 +107,3 @@ $(document).ready(function() {
     })
   })
 });
-
->>>>>>> master
