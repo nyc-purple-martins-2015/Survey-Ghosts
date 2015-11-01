@@ -55,4 +55,19 @@ $(document).ready(function() {
   //     $("#question-container").replaceWith(response.responseText);
   //   });
 
+  $(document).on('click', '.authored-surveys', function(event){
+    event.preventDefault();
+    var survey_and_author_id = this.id.split(" ");
+    var survey_id = survey_and_author_id[0];
+    var author_id = survey_and_author_id[1];
+    var individual_survey = $.ajax({
+      method: "get",
+      url: "/users/" + author_id + "/surveys/" + survey_id
+    })
+
+    individual_survey.done(function(data){
+      $('#'+ survey_id + '\\ ' + author_id).append(data)
+    })
+  })
 });
+
