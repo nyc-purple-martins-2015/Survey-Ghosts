@@ -16,7 +16,8 @@
 <div class="jumbotron">
   <div id='survey-taken-list'>
     <h3>Surveys Taken</h3>
-      <% @taken_surveys.each do |survey| %>
+      <% list_surveys = @taken_surveys.uniq %>
+      <% list_surveys.each do |survey| %>
       <% author = User.find(survey.author_id) %>
       <div class="taken-surveys"><p><%= survey.title %></p><p> | by <%= author.username %> on <%= survey.created_at.strftime("%b %d, %Y")%></p></div>
     <% end %>
