@@ -25,9 +25,3 @@
     <input type="submit" value="Delete Survey" class="button">
   </form>
 </div>
-
-<%= ChosenOption.where(survey_id:3).first.survey_id %>
-
-<% these_opts = ChosenOption.where(survey_id: 3) %>
-<% these_opts_by_person1 = these_opts.first %>
-<% these_opts_by_person1_option = Option.find(19) %>
