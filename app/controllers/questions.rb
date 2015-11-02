@@ -48,7 +48,9 @@ get '/surveys/:survey_id/questions/:id' do
   @survey = Survey.find(params[:survey_id])
   @questions = Question.where(survey_id: params[:survey_id])
   @question = @survey.questions.find(params[:id])
-  erb :'/questions/show'
+
+  erb :'/questions/show', layout: false
+
 end
 
 post '/chosen_options' do
@@ -57,10 +59,14 @@ post '/chosen_options' do
     selected_option = ChosenOption.new(user_id: current_user.id, option_id: params[:option_id], survey_id: params[:survey_id])
     if selected_option.save
       if  current_question == questions.last
-        redirect to("/surveys/#{params[:survey_id]}/complete")
+        if request.xhr?
+          erb :'surveys/complete'
+        else
+        redirect to("/surveys/#{params[:survey_id]}/complete"), layout: false
+        end
       else
         next_question_index = questions.index(current_question) + 1
-        redirect to("/surveys/#{params[:survey_id]}/questions/#{questions[next_question_index].id}")
+        redirect to("/surveys/#{params[:survey_id]}/questions/#{questions[next_question_index].id}"), layout:false
       end
     else
       status 400

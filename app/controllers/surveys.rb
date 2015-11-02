@@ -25,8 +25,16 @@ post '/surveys' do
 end
 
 get "/surveys/:id" do
+  @surveys = Survey.all
   @survey = Survey.find(params[:id])
+  @taken = false
+  if ChosenOption.where(user_id: current_user.id, survey_id: @survey.id).first
+    status 400
+    @taken = true
+    erb :"/surveys/index"
+  else
   erb :"surveys/show"
+  end
 end
 
 get "/surveys/:id/complete" do
